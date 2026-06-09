@@ -61,7 +61,8 @@ void cargarNotas(Estudiante *estudiantes, int total_estudiantes) {
             // Guardar usando el puntero a la estructura anidada
             (estudiantes + i)->academico.notas[j] = nota_ingresada;
         }
-    }void promediosPorEstudiante(Estudiante *estudiantes, int total_estudiantes) {
+    }
+    void promediosPorEstudiante(Estudiante *estudiantes, int total_estudiantes) {
     printf("\nPROMEDIO POR ESTUDIANTE\n");
     for (int i = 0; i < total_estudiantes; i++) {
         float suma = 0;
@@ -80,5 +81,35 @@ void promediosPorAsignatura(Estudiante *estudiantes, int total_estudiantes) {
             suma += (estudiantes + i)->academico.notas[j];
         }
         printf("Asignatura %d: %.2f\n", j + 1, suma / total_estudiantes);
+    }
+}
+
+void altaBajaPorEstudiante(Estudiante *estudiantes, int total_estudiantes) {
+    printf("\nNOTA ALTA Y BAJA POR ESTUDIANTE\n");
+    for (int i = 0; i < total_estudiantes; i++) {
+        float alta = (estudiantes + i)->academico.notas[0];
+        float baja = (estudiantes + i)->academico.notas[0];
+        
+        for (int j = 1; j < MAX_ASIGNATURAS; j++) {
+            float actual = (estudiantes + i)->academico.notas[j];
+            if (actual > alta) alta = actual;
+            if (actual < baja) baja = actual;
+        }
+        printf("Estudiante %d -> Nota Mas Alta: %.2f | Nota Mas Baja: %.2f\n", (estudiantes + i)->id, alta, baja);
+    }
+}
+
+void altaBajaPorAsignatura(Estudiante *estudiantes, int total_estudiantes) {
+    printf("\nNOTA ALTA Y BAJA POR ASIGNATURA\n");
+    for (int j = 0; j < MAX_ASIGNATURAS; j++) {
+        float alta = (estudiantes + 0)->academico.notas[j];
+        float baja = (estudiantes + 0)->academico.notas[j];
+        
+        for (int i = 1; i < total_estudiantes; i++) {
+            float actual = (estudiantes + i)->academico.notas[j];
+            if (actual > alta) alta = actual;
+            if (actual < baja) baja = actual;
+        }
+        printf("Asignatura %d -> Nota Mas Alta: %.2f | Nota Mas Baja: %.2f\n", j + 1, alta, baja);
     }
 }
