@@ -1,4 +1,4 @@
-Programacion 1
+##Programacion 1
 
 Crear un programa en C aplicando estructuras, punteros y funciones
 
