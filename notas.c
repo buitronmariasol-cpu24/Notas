@@ -61,5 +61,24 @@ void cargarNotas(Estudiante *estudiantes, int total_estudiantes) {
             // Guardar usando el puntero a la estructura anidada
             (estudiantes + i)->academico.notas[j] = nota_ingresada;
         }
+    }void promediosPorEstudiante(Estudiante *estudiantes, int total_estudiantes) {
+    printf("\nPROMEDIO POR ESTUDIANTE\n");
+    for (int i = 0; i < total_estudiantes; i++) {
+        float suma = 0;
+        for (int j = 0; j < MAX_ASIGNATURAS; j++) {
+            suma += (estudiantes + i)->academico.notas[j];
+        }
+        printf("Estudiante %d: %.2f\n", (estudiantes + i)->id, suma / MAX_ASIGNATURAS);
+    }
+}
+
+void promediosPorAsignatura(Estudiante *estudiantes, int total_estudiantes) {
+    printf("\nPROMEDIO POR ASIGNATURA\n");
+    for (int j = 0; j < MAX_ASIGNATURAS; j++) {
+        float suma = 0;
+        for (int i = 0; i < total_estudiantes; i++) {
+            suma += (estudiantes + i)->academico.notas[j];
+        }
+        printf("Asignatura %d: %.2f\n", j + 1, suma / total_estudiantes);
     }
 }
