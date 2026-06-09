@@ -42,3 +42,24 @@ int main() {
     return 0;
 }
 
+// 3. Implementación de funciones usando acceso por punteros ( -> )
+void cargarNotas(Estudiante *estudiantes, int total_estudiantes) {
+    for (int i = 0; i < total_estudiantes; i++) {
+        (estudiantes + i)->id = i + 1;
+        printf("\nNotas del Estudiante %d\n", (estudiantes + i)->id);
+        
+        for (int j = 0; j < MAX_ASIGNATURAS; j++) {
+            float nota_ingresada;
+            do {
+                printf("Asignatura %d (0-10): ", j + 1);
+                scanf("%f", &nota_ingresada);
+                if (nota_ingresada < 0 || nota_ingresada > 10) {
+                    printf("Error: La nota debe estar entre 0 y 10. Intenta otra vez.\n");
+                }
+            } while (nota_ingresada < 0 || nota_ingresada > 10);
+            
+            // Guardar usando el puntero a la estructura anidada
+            (estudiantes + i)->academico.notas[j] = nota_ingresada;
+        }
+    }
+}
