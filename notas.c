@@ -113,3 +113,19 @@ void altaBajaPorAsignatura(Estudiante *estudiantes, int total_estudiantes) {
         printf("Asignatura %d -> Nota Mas Alta: %.2f | Nota Mas Baja: %.2f\n", j + 1, alta, baja);
     }
 }
+void estadisticasAprobacion(Estudiante *estudiantes, int total_estudiantes) {
+    printf("\nESTADO DE RENDIMIENTO POR ASIGNATURA\n");
+    for (int j = 0; j < MAX_ASIGNATURAS; j++) {
+        int aprobados = 0;
+        int reprobados = 0;
+        
+        for (int i = 0; i < total_estudiantes; i++) {
+            if ((estudiantes + i)->academico.notas[j] >= 6.0) {
+                aprobados++;
+            } else {
+                reprobados++;
+            }
+        }
+        printf("Asignatura %d -> Aprobados: %d | Reprobados: %d\n", j + 1, aprobados, reprobados);
+    }
+}
