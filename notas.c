@@ -3,7 +3,7 @@
 
 #define MAX_ASIGNATURAS 3
 
-// 1. Estructuras anidadas 
+// Estructuras anidadas
 typedef struct {
     float notas[MAX_ASIGNATURAS];
 } RegistroAcademico;
@@ -13,7 +13,7 @@ typedef struct {
     RegistroAcademico academico;
 } Estudiante;
 
-// 2. Prototipos de funciones que reciben punteros a la estructura
+// Prototipos de las funciones
 void cargarNotas(Estudiante *estudiantes, int total_estudiantes);
 void promediosPorEstudiante(Estudiante *estudiantes, int total_estudiantes);
 void promediosPorAsignatura(Estudiante *estudiantes, int total_estudiantes);
@@ -28,10 +28,10 @@ int main() {
     printf("Cantidad de estudiantes a registrar: ");
     scanf("%d", &total_estudiantes);
 
-    // Creamos el arreglo de estructuras
+    // Arreglo de estructuras
     Estudiante listaEstudiantes[total_estudiantes];
 
-    // Pasamos el arreglo (que decae en puntero) a las funciones
+    // Llamadas a las funciones pasando el puntero
     cargarNotas(listaEstudiantes, total_estudiantes);
     promediosPorEstudiante(listaEstudiantes, total_estudiantes);
     promediosPorAsignatura(listaEstudiantes, total_estudiantes);
@@ -42,7 +42,6 @@ int main() {
     return 0;
 }
 
-// 3. Implementación de funciones usando acceso por punteros ( -> )
 void cargarNotas(Estudiante *estudiantes, int total_estudiantes) {
     for (int i = 0; i < total_estudiantes; i++) {
         (estudiantes + i)->id = i + 1;
@@ -62,7 +61,9 @@ void cargarNotas(Estudiante *estudiantes, int total_estudiantes) {
             (estudiantes + i)->academico.notas[j] = nota_ingresada;
         }
     }
-    void promediosPorEstudiante(Estudiante *estudiantes, int total_estudiantes) {
+}
+
+void promediosPorEstudiante(Estudiante *estudiantes, int total_estudiantes) {
     printf("\nPROMEDIO POR ESTUDIANTE\n");
     for (int i = 0; i < total_estudiantes; i++) {
         float suma = 0;
@@ -113,6 +114,7 @@ void altaBajaPorAsignatura(Estudiante *estudiantes, int total_estudiantes) {
         printf("Asignatura %d -> Nota Mas Alta: %.2f | Nota Mas Baja: %.2f\n", j + 1, alta, baja);
     }
 }
+
 void estadisticasAprobacion(Estudiante *estudiantes, int total_estudiantes) {
     printf("\nESTADO DE RENDIMIENTO POR ASIGNATURA\n");
     for (int j = 0; j < MAX_ASIGNATURAS; j++) {
